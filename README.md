@@ -27,7 +27,7 @@ Feel free to test our my project and star it. I reverse engineered ChatGPT API t
 
 ## Usage
 
-Hosted on Vercel. The main route of URL: `https://flask-API-example-rouge.vercel.app/`. All API requests should be sent to this URL.
+Hosted on Vercel. The main route of URL: `https://freegpt-api.vercel.app/`. All API requests should be sent to this URL.
 
 ### /
 
@@ -35,20 +35,20 @@ It is not a API at the root, would redirect you back to the github project.
 
 ### /api/token
 
-To change the API's token, send a POST request with a token specifying your token at /API/token:
+To change the API's token, send a POST request with a token specifying your token at /api/token:
 
 ```bash
-curl -X POST -d "token=YOUR_ACCESS_TOKEN_HERE" http://localhost:3000/API/token
+curl -X POST -d "token=YOUR_ACCESS_TOKEN_HERE" http://localhost:3000/api/token
 ```
 
 > Server will automatically test your token by sending a test prompt. Rate-limited tokens would give you a key `error`, success will give key `message` with readable messages.
 
 ### /api/prompt
 
-After the API is ready with a token, you can ask it prompts. API route: /API/prompt. Include a `prompt` with the request..
+After the API is ready with a token, you can ask it prompts. API route: /api/prompt. Include a `prompt` with the request..
 
 ```bash
-curl -X POST -d "prompt=Hey GPT!" http://localhost:3000/API/prompt
+curl -X POST -d "prompt=Hey GPT!" http://localhost:3000/api/prompt
 ```
 
 When no token was initalized with, the return would be:
