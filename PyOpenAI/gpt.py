@@ -6,7 +6,6 @@ from uuid import uuid4
 class TokenRateLimitedError(Exception):
     def __init__(self, message="The token is rate limited. Try again later.", smth=""):
         self.message = message
-        print(smth)
         super().__init__(self.message)
 
 # The Main Class (Bot)
@@ -19,6 +18,9 @@ class Bot:
     
     def get_access_token(self):
         return self.access_token
+    
+    def get_conv_id(self):
+        return self.conversation_id
 
     def token(self, access_token: str):
         self.access_token = access_token
@@ -59,6 +61,8 @@ class Bot:
             try:
                 body["conversation_id"] = self.conversation_id
             except:
+                if self.access_token == "" or self.access_token == None:
+                    raise NameError("You did not specify a token, cannot work.")
                 raise TokenRateLimitedError("The token is rate limited. Try again later. From body conv id", body)
 
         response = self.session.post(
@@ -89,6 +93,8 @@ class Bot:
             if data.get("conversation_id", "") != None:
                 self.conversation_id = data["conversation_id"]
         except:
+            if self.access_token == "" or self.access_token == None:
+                raise NameError("You did not specify a token, cannot work.")
             raise TokenRateLimitedError("The token is rate limited. Try again later. From line 74", data)
             
         if data["message"]["status"] != "finished_successfully": # Recieved prompt was not complete
