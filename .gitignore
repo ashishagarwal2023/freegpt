@@ -1,5 +1,12 @@
-.venv/
-dist/
+idea/
+.vscode/
 __pycache__/
-PyOpenAI/__pycache__/
-PyOpenAI.egg-info/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+docs/_build/
+dist/
+venv/
+.venv
+.vercel
